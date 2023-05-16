@@ -1,9 +1,6 @@
 import "dotenv/config";
 import express from "express";
 const app = express();
-const { ATLAS_USERNAME, ATLAS_PASSWORD} = process.env;
-console.log(ATLAS_USERNAME, ATLAS_PASSWORD);
-
 
 import cors from "cors";
 app.use(cors({
@@ -18,6 +15,12 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }));
+
+import userRouter from "./routers/userRouter.js";
+app.use(userRouter);
+
+import formulaeRouter from "./routers/formulaeRouter.js"
+app.use(formulaeRouter);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, (error)=>{

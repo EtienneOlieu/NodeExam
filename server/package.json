@@ -15,7 +15,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "create-db": "node ./databases/createDatabase.js",
+    "connect-db": "node ./databases/connection.js",
     "reset-db": "node ./databases/createDatabase.js delete_mode"
   },
   "keywords": [],
