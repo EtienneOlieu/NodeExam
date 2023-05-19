@@ -39,16 +39,15 @@ function ingredientValue(ingredient) {
 
 </script>
 
-<h1>THIS IS GOING TO BE ALL OF THE AVAILABLE FORMULAE</h1>
+<h1>FORMULAE</h1>
+<h2>All the formulae</h2>
 
 <p>Want to make a larger batch?</p>
-
 <input type="range" min="1" max="10" bind:value={sliderValue}/>
 <p>Showing for {sliderValue} number of servings.</p>
 
 {#each formulaeArray as formulae}
 <div class="formulaeDiv">
-
 <h2>{formulae.name}</h2>
 <p>{formulae.effect}</p>
 <p>{formulae.description}</p>
@@ -57,7 +56,7 @@ function ingredientValue(ingredient) {
 <ul>
 <li><strong>{ingredientName(ingredient)}:</strong> {ingredientValue(ingredient) * sliderValue} {ingredientUnit(ingredient)}</li>
 </ul>
-  {/each}
+{/each}
 {#if formulae.time / 60 < 1}
 <p>Cook at {formulae.temperature}°C for {formulae.time} minutes</p>
 {:else}

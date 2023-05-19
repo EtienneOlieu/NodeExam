@@ -5,6 +5,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "helmet": "^7.0.0",
     "mongodb": "^5.4.0",
     "nodemon": "^2.0.22",
     "vite": "^4.3.5"
@@ -12,7 +13,6 @@
   "type": "module",
   "name": "nodeexam",
   "version": "1.0.0",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "connect-db": "node ./databases/connection.js",

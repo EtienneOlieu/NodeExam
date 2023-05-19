@@ -11,8 +11,7 @@ router.get("/api/formulae", async (req, res) => {
     if ( allFormulae.length === 0 ){
         return res.status(404).send({data: "Could not retrieve resource"})
     }
-    //TODO DELETE CLOG
-    console.log("TEST OF DATA BEING SENT: ", allFormulae);
+   
     res.status(200).send({data: allFormulae});
 });
 

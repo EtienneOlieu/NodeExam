@@ -31,7 +31,9 @@ router.get("/api/users/logout", async (req, res) => {
 //Login
 router.post("/api/users/login", async (req, res) => {
     const { email, password } = req.body;
-    const user = await users.find({email: `${email}`});
+    console.log("This is the request ",email, password)
+    const user = await users.findOne({email: `${email}`});
+    console.log("this is the created user ", user);
 
     if (!user){
         return res.status(404).send({data: "User does not exist."});
