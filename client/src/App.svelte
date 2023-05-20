@@ -9,21 +9,31 @@ import Coven from "./pages/coven/Coven.svelte";
 import Formulae from "./pages/formulae/Formulae.svelte";
 import Login from "./pages/login/Login.svelte";
 import Account from "./pages/account/Account.svelte";
+import Signup from "./pages/signup/Signup.svelte";
+import Admin from "./pages/admin/Admin.svelte";
 
 </script>
 
 <Router>
+
 <nav>
 <Link to="/">Home</Link>
+
 {#if !$user}
 <Link to="/login_sign_up">Login / Sign up</Link>
 {/if}
+
 {#if $user}
-<Link to="/account"></Link>
-{/if}
-<Link to="/about">About</Link>
+<Link to="/account">Account</Link>
 <Link to="/coven">Coven</Link>
 <Link to="/formulae">Formulae</Link>
+{#if $user.privilege === "admin"}
+<Link to="/admin">ADMIN</Link>
+{/if}
+{/if}
+
+<Link to="/about">About</Link>
+
 </nav>
 
 <Route path="/">
@@ -50,10 +60,14 @@ import Account from "./pages/account/Account.svelte";
   <Formulae />
 </Route>
 
+<Route path="/signup">
+  <Signup />
+</Route>
+
+<Route path="/admin">
+  <Admin />
+</Route>
+
 </Router>
 
 <Footer />
-
-<style>
-
-</style>

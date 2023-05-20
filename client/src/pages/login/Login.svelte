@@ -1,7 +1,7 @@
 <script>
     import { BASE_URL } from "../../store/urlDomain.js";
     import { user } from "../../store/user.js";
-    import { navigate } from "svelte-navigator"; 
+    import { Link, navigate } from "svelte-navigator"; 
     import toastr from "toastr";
     import 'toastr/build/toastr.css';   
 
@@ -45,7 +45,7 @@ async function login(){
         toastr.success("You have logged in. Welcome back ", $user.name);
         setTimeout(()=>{
             navigate("/", { replace: true });
-        }, 2000);
+        }, 1500);
     };
 
     email = "";
@@ -63,3 +63,4 @@ async function login(){
     <button type="submit">Login</button>
 </form>
 
+<p>Don't have an account? Sign up <Link to="/signup">here</Link>.</p>

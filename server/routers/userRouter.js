@@ -49,9 +49,6 @@ router.post("/api/users/login", async (req, res) => {
         name: user.name, email, privilege: user.privilege
     };
 
-    //TODO DELETE
-    console.log("THIS IS A LOG OF THE SESSION USER: ", req.session.user);
-
     res.status(200).send(req.session.user);
 });
 
@@ -60,8 +57,8 @@ router.post("/api/users/createuser", async (req, res) => {
     console.log(req.body);
     const { name, email, password } = req.body;
 
-    const checkForExistingName = await users.find({ name: `${name}`});
-    const checkForExistingEmail = await users.find({ email: `${email}`});
+    const checkForExistingName = await users.findOne({ name: `${name}`});
+    const checkForExistingEmail = await users.findOne({ email: `${email}`});
 
     if(!checkForExistingName && !checkForExistingEmail){
 
@@ -71,7 +68,7 @@ router.post("/api/users/createuser", async (req, res) => {
         const result = await users.insertOne(newUser);
 
 
-        return res.status(201).send({data: `User: ${name} successfully created.`, data: result.insertedIds})
+        return res.status(201).send({data: name});
     }
     else {
         return res.status(404).send({data: "Name or Email is already in use."})
