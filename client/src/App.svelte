@@ -1,6 +1,7 @@
 <script>
 import { user } from "../src/store/user.js"
 import { Router, Link, Route } from "svelte-navigator";
+import PrivateRoute from "./components/protectors/PrivateRoute.svelte";
 
 import Footer from "./components/Footer.svelte";
 import Home from "./pages/home/Home.svelte";
@@ -44,29 +45,29 @@ import Admin from "./pages/admin/Admin.svelte";
   <Login />
 </Route>
 
-<Route path="/account">
+<PrivateRoute path="/account">
   <Account />
-</Route>
+</PrivateRoute>
 
 <Route path="/about">
   <About />
 </Route>
 
-<Route path="/coven">
+<PrivateRoute path="/coven">
   <Coven />
-</Route>
+</PrivateRoute>
 
-<Route path="/formulae">
+<PrivateRoute path="/formulae">
   <Formulae />
-</Route>
+</PrivateRoute>
 
 <Route path="/signup">
   <Signup />
 </Route>
 
-<Route path="/admin">
+<PrivateRoute path="/admin">
   <Admin />
-</Route>
+</PrivateRoute>
 
 </Router>
 

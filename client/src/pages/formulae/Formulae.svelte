@@ -44,7 +44,7 @@ function ingredientValue(ingredient) {
 
 <p>Want to make a larger batch?</p>
 <input type="range" min="1" max="10" bind:value={sliderValue}/>
-<p>Showing for {sliderValue} number of servings.</p>
+<p>Showing for {sliderValue} serving{#if sliderValue > 1}s{/if}.</p>
 
 {#each formulaeArray as formulae}
 <div class="formulaeDiv">

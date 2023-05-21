@@ -1,4 +1,5 @@
 <script>
+    import { navigate } from "svelte-navigator";
 import { BASE_URL } from "../store/urlDomain";
 import { user } from "../store/user.js";
 import toastr from "toastr";
@@ -14,6 +15,9 @@ async function logout(){
     });
 
     user.set(null);
+    setTimeout(()=>{
+        navigate("/", {replace: true})
+    },1500);
     return toastr.success("You have been logged out");
 }
 </script>
