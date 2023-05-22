@@ -16,7 +16,7 @@ let password = "";
 async function login(){
     const credentialsToJson = JSON.stringify({email, password});
 
-    const loginUrl = BASE_URL + "/api/users/login";
+    const loginUrl = BASE_URL + "/api/login";
 
     const response = await fetch(loginUrl, {
         method: "POST",

@@ -1,19 +1,20 @@
 <script>
 
 import { BASE_URL } from "../../store/urlDomain.js";
-import { onMount, onDestroy } from "svelte";
+import { onMount } from "svelte";
 
 const formulaeApi = BASE_URL + "/api/formulae";
 let formulaeArray = [];
 let sliderValue = 1;
+
 async function getFormulae(){
 
-const response = await fetch(formulaeApi, {
-    method: "GET",
-});
+    const response = await fetch(formulaeApi, {
+        method: "GET",
+    });
 
-const data = await response.json();
-formulaeArray = data.data;
+    const data = await response.json();
+    formulaeArray = data.data;
 
 };
 

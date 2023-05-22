@@ -1,7 +1,8 @@
 <script>
 import { user } from "../src/store/user.js"
-import { Router, Link, Route } from "svelte-navigator";
+import { Router, Link, Route, navigate } from "svelte-navigator";
 import PrivateRoute from "./components/protectors/PrivateRoute.svelte";
+
 
 import Footer from "./components/Footer.svelte";
 import Home from "./pages/home/Home.svelte";
@@ -12,6 +13,13 @@ import Login from "./pages/login/Login.svelte";
 import Account from "./pages/account/Account.svelte";
 import Signup from "./pages/signup/Signup.svelte";
 import Admin from "./pages/admin/Admin.svelte";
+
+$: if (!user){
+  navigate("/", {
+    state: { from: location.pathname },
+            replace: true
+  }); 
+};
 
 </script>
 

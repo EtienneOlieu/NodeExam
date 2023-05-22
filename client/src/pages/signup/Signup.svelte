@@ -28,7 +28,7 @@ let password2 = "";
         const password = password1;
 
         const newUserCredentials = JSON.stringify({name, email, password});
-        const signUpUrl = BASE_URL + "/api/users/createuser";
+        const signUpUrl = BASE_URL + "/api/createuser";
 
         const response = await fetch(signUpUrl, {
             method: "POST",

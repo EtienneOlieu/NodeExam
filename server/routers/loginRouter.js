@@ -5,26 +5,15 @@ import bcrypt from "bcrypt";
 
 const users = client.db("hexnetDB").collection("users");
 
-// All users
-router.get("/api/users", async (req, res) => {
-    const allUsers = await users.find().toArray();
-
-    if (allUsers.length === 0){
-        return res.status(404).send({data: "Could not retrieve resource"});
-    };
-
-    res.status(200).send({ data: allUsers });
-});
-
 //Logout
-router.get("/api/users/logout", async (req, res) => {
+router.get("/api/logout", async (req, res) => {
     req.session.destroy(()=>{
         res.status(200).send({data: "Logged out"})
     });
 });
 
 //Login
-router.post("/api/users/login", async (req, res) => {
+router.post("/api/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await users.findOne({email: `${email}`});
 
@@ -47,7 +36,7 @@ router.post("/api/users/login", async (req, res) => {
 });
 
 //Create new user
-router.post("/api/users/createuser", async (req, res) => {
+router.post("/api/createuser", async (req, res) => {
     console.log(req.body);
     const { name, email, password } = req.body;
 
