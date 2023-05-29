@@ -80,3 +80,43 @@ $: if (!user){
 </Router>
 
 <Footer />
+
+<style>
+
+  :global(body){
+    background-image: url("/depart-pour-le-sabbat.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:50% auto;
+    background-attachment: fixed;
+    background-color: black;
+    color: rgb(145, 154, 159);
+  }
+  
+  :global(#app){
+    margin-left: 25vw;
+    margin-right: 25vw;
+    min-height: 90vh;
+    justify-content: center;
+  }
+
+@font-face{
+  font-family: "minster";
+  src: url("/fonts/minster2.ttf")
+}
+
+  :global(h1, h2){
+    font-family: "minster";
+    color: red;
+    font-size: 3em;
+  }
+
+  :global(h2){
+    text-shadow: 0.07em 0.1em rgb(140, 0, 0, 0.6);
+  }
+
+  :global(h1){
+    text-shadow: 0.07em 0.2em rgb(140, 0, 0, 0.6), -0.07em -0.2em rgb(216, 112, 147, 0.6);
+    font-size: 5em;
+  }
+</style>

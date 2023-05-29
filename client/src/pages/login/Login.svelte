@@ -54,8 +54,8 @@ async function login(){
 
 </script>
 
-<h1>Log in</h1>
-
+<h1>LOG IN</h1>
+<div id="login-div">
 <form on:submit|preventDefault="{login}">
     <input type="email" name="email" placeholder="email" bind:value={email} required/>
     <input type="password" name="password" placeholder="password" bind:value={password} required/>
@@ -64,3 +64,4 @@ async function login(){
 </form>
 
 <p>Don't have an account? Sign up <Link to="/signup">here</Link>.</p>
+</div>

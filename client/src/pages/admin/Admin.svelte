@@ -33,12 +33,13 @@ onMount(()=>{
 
 <style>
     .userDiv {
-        border-radius: 1em;
-        background-color: lightgray;
-        margin-left: 25vw;
-        margin-right: 25vw;
-        margin-bottom: 3vh;
-        padding: 1em;
-        text-align: left;
+    background-color: rgb(145, 145, 145, 0.9);
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-bottom: 3vh;
+    padding: 1em;
+    text-align: left;
+    color: blanchedalmond;
+    border-style:double;
     }
 </style>

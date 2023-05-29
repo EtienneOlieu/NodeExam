@@ -41,9 +41,6 @@ let password2 = "";
 
         const data = await response.json();
 
-        //TODO DELETE
-        console.log("This should be the created resource: ", data)
-
         if (response.status === 404){
             return toastr.error(`ERROR: ${data.message}`)
         };
@@ -66,7 +63,7 @@ let password2 = "";
 </script>
 
     <h1>SIGN UP</h1>
-
+<div id="signup-div">
 <form on:submit|preventDefault="{signUp}">
 
     <input type="text" name="name" placeholder="name" bind:value={name} required> 
@@ -84,3 +81,8 @@ let password2 = "";
     <br>
     <button type="submit">Sign Up</button>
 </form>
+</div>
+
+<style>
+    
+</style>

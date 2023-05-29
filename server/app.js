@@ -31,10 +31,19 @@ app.use(session({
 }));
 
 import logRouter from "./routers/loginRouter.js";
-app.use(logRouter)
+app.use(logRouter);
+
 
 import userRouter from "./routers/userRouter.js";
 app.use(userRouter);
+
+function restrictedUserAuth (req, res, next){
+    if (req.session.privilege !== "admin"){
+        return res.status(403).send({data: "restricted resource"})
+    };
+    next();
+};
+
 
 import formulaeRouter from "./routers/formulaeRouter.js"
 app.use(formulaeRouter);

@@ -11,6 +11,7 @@ async function getFormulae(){
 
     const response = await fetch(formulaeApi, {
         method: "GET",
+        credentials: "include",
     });
 
     const data = await response.json();
@@ -68,12 +69,18 @@ function ingredientValue(ingredient) {
 
 <style>
 .formulaeDiv{
-    border-radius: 1em;
-    background-color: lightgray;
-    margin-left: 25vw;
-    margin-right: 25vw;
+    background-image: url("/endsheet-olivegreen.jpeg");
+    background-position: center;
+    background-size:auto;
+    background-repeat: no-repeat;
+    margin-left: 2vw;
+    margin-right: 2vw;
     margin-bottom: 3vh;
     padding: 1em;
     text-align: left;
+    color: rgb(45, 45, 45);
+    border-style: double;
+    border-color: blanchedalmond;
+    border-radius: 4em;
     }
 </style>
