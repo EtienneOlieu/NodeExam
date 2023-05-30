@@ -44,6 +44,7 @@ function ingredientValue(ingredient) {
 <h1>FORMULAE</h1>
 <h2>All the formulae</h2>
 
+<div id="batch-div">
 <p>Want to make a larger batch?</p>
 <input type="range" min="1" max="10" bind:value={sliderValue}/>
 <p>Showing for {sliderValue} serving{#if sliderValue > 1}s{/if}.</p>
@@ -51,6 +52,7 @@ function ingredientValue(ingredient) {
 {#each formulaeArray as formulae}
 <div class="formulaeDiv">
 <h2>{formulae.name}</h2>
+<div class="form-text-div">
 <p>{formulae.effect}</p>
 <p>{formulae.description}</p>
 <h3>ingredients</h3>
@@ -65,8 +67,9 @@ function ingredientValue(ingredient) {
 <p>Cook at {formulae.temperature}°C for {formulae.time/60} hours</p>
 {/if}
 </div>
+</div>
 {/each}
-
+</div>
 <style>
 .formulaeDiv{
     background-image: url("/endsheet-olivegreen.jpeg");
@@ -81,6 +84,18 @@ function ingredientValue(ingredient) {
     color: rgb(45, 45, 45);
     border-style: double;
     border-color: blanchedalmond;
-    border-radius: 4em;
     }
+
+.form-text-div{    
+    padding: 1em;
+    background-color: rgb(250, 235, 215, 0.7);
+    border-radius: 2em;
+}
+
+#batch-div{
+    padding-top: 2em;
+    background-color: rgb(250, 235, 215, 0.7);
+    border-style: double;
+    }
+
 </style>

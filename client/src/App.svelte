@@ -90,7 +90,8 @@ $: if (!user){
     background-size:50% auto;
     background-attachment: fixed;
     background-color: black;
-    color: rgb(145, 154, 159);
+    color: rgb(45, 45, 45);
+    
   }
   
   :global(#app){
@@ -118,5 +119,11 @@ $: if (!user){
   :global(h1){
     text-shadow: 0.07em 0.2em rgb(140, 0, 0, 0.6), -0.07em -0.2em rgb(216, 112, 147, 0.6);
     font-size: 5em;
+  }
+
+  :global(p){
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
   }
 </style>

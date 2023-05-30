@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 const db = await client.db("hexnetDB");
 const collectionUsers = await db.collection("users");
 const collectionFormulae = await db.collection("formulae");
+const collectionChat = await db.collection("chatlog");
 
 const isDeleteMode = process.argv.findIndex((argument) => argument === "delete_mode") === -1 ? false : true;
 
@@ -12,6 +13,8 @@ if (isDeleteMode){
     await db.createCollection("users");
     await db.dropCollection("formulae");
     await db.createCollection("formulae");
+    await db.dropCollection("chatlog");
+    await db.createCollection("chatlog");
 }
 
 const lindaPW = await bcrypt.hash("valentin", 12);
@@ -23,7 +26,7 @@ const adminPW = await bcrypt.hash("1234", 12);
 
 const sampleUsers = [
     {
-    "name": "Linda Mørkesol",
+    "name": "Linda Moerkesol",
     "email": "solnat@mail.com",
     "password": `${lindaPW}`,
     "privilege": "user"
@@ -105,3 +108,19 @@ collectionFormulae.insertMany(sampleFormulae, (error, result) => {
     }
     console.log("Inserted formulae:", result.insertedCount);
 });
+
+const today = new Date().toLocaleString("en-GB");
+console.log(today)
+const dayZeroLog = {
+    "date": today,
+    "sender": "ADMIN",
+    "body": "Chatlog reset..."
+};
+
+collectionChat.insertOne(dayZeroLog, (error, result) => {
+    if (error) {
+        console.log("Failed to insert into chatlog:", error);
+        return;
+    }
+    console.log("Inserted chatlog:", result.insertOne);
+})

@@ -23,12 +23,36 @@ const apiLimiter = rateLimit({
 app.use(apiLimiter);
 
 import session from "express-session";
-app.use(session({
+const sessionMiddleware = session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
-}));
+});
+app.use(sessionMiddleware);
+
+import http from "http";
+const server = http.createServer(app);
+
+import { Server } from "socket.io";
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["*"]
+    }
+});
+
+const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
+io.use(wrap(sessionMiddleware));
+
+io.on("connection", (socket) => {
+    console.log("socket connected:", socket.id);
+
+    socket.on("new message", async message => {
+        await saveMessage(message);
+        io.emit("message from server", message);
+    })
+})
 
 import logRouter from "./routers/loginRouter.js";
 app.use(logRouter);
@@ -44,12 +68,11 @@ function restrictedUserAuth (req, res, next){
     next();
 };
 
-
 import formulaeRouter from "./routers/formulaeRouter.js"
 app.use(formulaeRouter);
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, (error)=>{
+server.listen(PORT, (error)=>{
     if(error){
         console.log(error);
     }
