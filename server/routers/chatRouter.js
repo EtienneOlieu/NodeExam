@@ -1,22 +1,20 @@
-import { Router } from "express";
 import client from "../databases/connection.js";
+import { Router } from "express";
 
 const router = Router();
 
-const chatlog = client.db("hexnetDB").collection("chatlog")
+const chatlog = client.db("hexnetDB").collection("chatlog");
 
-router.get("api/chatMessages", async (req, res) => {
-const messages = await chatlog.find().toArray();
-const chatArray = [];
-
-messages.forEach(message => {
-chatArray.push(message);
-})
-return res.status(200).send({data: chatArray});
+router.get("/api/chatmessages", async (req, res) => {
+    const messages = await chatlog.find().toArray();
+    if(messages.length === 0){
+        return res.status(404).send({data: "Could not retrieve resource"})
+    }
+    return res.status(200).send({ data: messages });
 });
 
-async function saveMessage(message){
+export async function saveMessage(message) {
     await chatlog.insertOne(message);
 }
 
-export default { router, saveMessage }
+export default router;

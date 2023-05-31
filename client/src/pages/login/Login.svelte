@@ -39,9 +39,6 @@ async function login(){
     if (response.status === 200 && data.email === email){
         user.set({name: data.name, email: data.email, privilege: data.privilege})
         
-        //TODO DELETE
-        console.log("This is a log of user after logging in: ", $user);
-
         toastr.success("You have logged in. Welcome back ", $user.name);
         setTimeout(()=>{
             navigate("/", { replace: true });

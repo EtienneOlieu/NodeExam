@@ -1,5 +1,6 @@
 import client from "../databases/connection.js";
 import { Router } from "express";
+
 const router = Router();
 
 const formulae = client.db("hexnetDB").collection("formulae");
@@ -12,13 +13,7 @@ router.get("/api/formulae", async (req, res) => {
         return res.status(404).send({data: "Could not retrieve resource"})
     }
    
-    res.status(200).send({data: allFormulae});
-});
-
-router.get("/api/formulae/id", async (req, res) => {
-    const searchedFormulae = req.query;
-
-    
+    res.status(200).send({ data: allFormulae });
 });
 
 export default router;

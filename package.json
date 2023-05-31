@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
+    "socket.io-client": "^4.6.2",
     "toastr": "^2.1.4"
   }
 }

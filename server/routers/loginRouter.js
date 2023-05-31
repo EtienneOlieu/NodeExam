@@ -12,6 +12,8 @@ router.get("/api/logout", async (req, res) => {
     });
 });
 
+//TODO mikkels sessions Router
+
 //Login
 router.post("/api/login", async (req, res) => {
     const { email, password } = req.body;

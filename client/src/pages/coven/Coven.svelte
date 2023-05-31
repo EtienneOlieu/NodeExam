@@ -1,10 +1,49 @@
 <script>
+    import { user } from "../../store/user.js";
+    import io from "socket.io-client";
+    import { BASE_URL } from "../../store/urlDomain.js";
+    import { onMount } from "svelte";
 
-    
-    let message;
+    const chatlogApi = BASE_URL + "/api/chatmessages";
+    const socket = io("localhost:8080");
+    let message = "";
+    let chatArray = [];
 
 
+function handleSendMessage(){
+    const now = new Date().toLocaleString("en-GB");
+    const serverMessage = {name:$user.name, time:now, message:message};
+    //TODO DELETE
+    console.log("THIS IS MESSAGE: ",message)
+    console.log("THIS IS FOR SERVER: ",serverMessage);
 
+    socket.emit("new message", serverMessage);
+    message = "";
+}
+
+async function getChatlog(){
+
+    const response = await fetch(chatlogApi, {
+        method: "GET",
+        credentials: "include",
+    });
+
+    const data = await response.json();
+    //TODO DELETE
+    console.log("FROM THE FETCH: ", data.data);
+    chatArray = data.data;
+};
+
+socket.on("message from server", (incomingMessage )=> {
+    //TODO DELETE
+    console.log("THIS IS THE MESSAGE FROM THE SERVER: ",incomingMessage);
+    chatArray = [...chatArray, incomingMessage];
+});
+        
+
+onMount(()=>{
+    getChatlog();
+});
 </script>
 
 <h1>COVEN</h1>
@@ -12,11 +51,16 @@
 
 <div id="chat-div">
     <div id="messages-div">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-
+    {#each chatArray as message}
+        <p>{message.name} - {message.time}</p>
+        <p>{message.message}</p>
+    {/each}
     </div>
+</div>
+
+<div id="chat-input">
+<input type="text" bind:value={message} placeholder="type here..."/>
+<button on:click|preventDefault={handleSendMessage}>send</button>
 </div>
 
 <style>
@@ -40,5 +84,10 @@
     background-color: rgb(250, 235, 215, 0.7);
     border-radius: 1em;
     flex-grow: 1;
+    }
+
+    input{
+        width: 35vw;
+        height: fit-content;
     }
 </style>

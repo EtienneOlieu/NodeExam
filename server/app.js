@@ -37,13 +37,15 @@ const server = http.createServer(app);
 import { Server } from "socket.io";
 const io = new Server(server, {
     cors: {
-        origin: "*",
-        methods: ["*"]
+        origin: "http://localhost:5173",
+        methods: ["*"],
     }
 });
 
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 io.use(wrap(sessionMiddleware));
+
+import { saveMessage } from "./routers/chatRouter.js";
 
 io.on("connection", (socket) => {
     console.log("socket connected:", socket.id);
@@ -61,15 +63,11 @@ app.use(logRouter);
 import userRouter from "./routers/userRouter.js";
 app.use(userRouter);
 
-function restrictedUserAuth (req, res, next){
-    if (req.session.privilege !== "admin"){
-        return res.status(403).send({data: "restricted resource"})
-    };
-    next();
-};
-
-import formulaeRouter from "./routers/formulaeRouter.js"
+import formulaeRouter from "./routers/formulaeRouter.js";
 app.use(formulaeRouter);
+
+import chatRouter from "./routers/chatRouter.js";
+app.use(chatRouter);
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, (error)=>{
