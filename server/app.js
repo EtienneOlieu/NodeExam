@@ -42,6 +42,9 @@ const io = new Server(server, {
     }
 });
 
+import { user, admin } from "./util/middleware.js";
+app.use
+
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 io.use(wrap(sessionMiddleware));
 
@@ -56,9 +59,11 @@ io.on("connection", (socket) => {
     })
 })
 
+import sessionRouter from "./routers/sessionRouter.js"
+app.use(sessionRouter);
+
 import logRouter from "./routers/loginRouter.js";
 app.use(logRouter);
-
 
 import userRouter from "./routers/userRouter.js";
 app.use(userRouter);
@@ -68,6 +73,10 @@ app.use(formulaeRouter);
 
 import chatRouter from "./routers/chatRouter.js";
 app.use(chatRouter);
+
+app.get("*", (req, res)=>{
+    res.send("<h1>404 NOT FOUND</h1>");
+});
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, (error)=>{

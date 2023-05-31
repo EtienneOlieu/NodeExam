@@ -1,12 +1,13 @@
 import client from "../databases/connection.js";
 import { Router } from "express";
+import { user, admin } from "../util/middleware.js"
 const router = Router();
 import bcrypt from "bcrypt";
 
 const users = client.db("hexnetDB").collection("users");
 
 //Logout
-router.get("/api/logout", async (req, res) => {
+router.get("/api/logout", user, async (req, res) => {
     req.session.destroy(()=>{
         res.status(200).send({data: "Logged out"})
     });

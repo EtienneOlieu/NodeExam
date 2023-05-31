@@ -1,12 +1,12 @@
 import client from "../databases/connection.js";
 import { Router } from "express";
 const router = Router();
-import bcrypt from "bcrypt";
+import { user, admin } from "../util/middleware.js";
 
 const users = client.db("hexnetDB").collection("users");
 
 // All users
-router.get("/api/users", async (req, res) => {
+router.get("/api/users", admin, async (req, res) => {
     const allUsers = await users.find().toArray();
 
     if (allUsers.length === 0){
