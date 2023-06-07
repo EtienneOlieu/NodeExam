@@ -18,7 +18,7 @@ async function logout(){
     user.set(null);
     setTimeout(()=>{
         navigate("/", {replace: true})
-    },1500);
+    },500);
     return toastr.success(data.data);
 }
 </script>

@@ -20,7 +20,7 @@ const apiLimiter = rateLimit({
 	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
-app.use(apiLimiter);
+app.use("/api", apiLimiter);
 
 import session from "express-session";
 const sessionMiddleware = session({
@@ -41,9 +41,6 @@ const io = new Server(server, {
         methods: ["*"],
     }
 });
-
-import { user, admin } from "./util/middleware.js";
-app.use
 
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 io.use(wrap(sessionMiddleware));

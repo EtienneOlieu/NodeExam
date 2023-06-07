@@ -42,7 +42,7 @@ async function login(){
         toastr.success("You have logged in. Welcome back ", $user.name);
         setTimeout(()=>{
             navigate("/", { replace: true });
-        }, 1500);
+        }, 500);
     };
 
     email = "";

@@ -13,8 +13,6 @@ router.get("/api/logout", user, async (req, res) => {
     });
 });
 
-//TODO mikkels sessions Router
-
 //Login
 router.post("/api/login", async (req, res) => {
     const { email, password } = req.body;
@@ -33,7 +31,6 @@ router.post("/api/login", async (req, res) => {
     req.session.user = {
         name: user.name, email, privilege: user.privilege
     };
-    console.log("SESSION_USER:", req.session.user);
 
     res.status(200).send(req.session.user);
 });

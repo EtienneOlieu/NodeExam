@@ -1,6 +1,5 @@
 import { Router } from "express";
 const router = Router();
-import { user } from "../util/middleware.js";
 
 router.get("api/session", async (req, res) => {
     const sessionData = {
