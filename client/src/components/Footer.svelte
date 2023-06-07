@@ -1,5 +1,5 @@
 <script>
-    import { navigate } from "svelte-navigator";
+import { navigate } from "svelte-navigator";
 import { BASE_URL } from "../store/urlDomain";
 import { user } from "../store/user.js";
 import toastr from "toastr";
@@ -29,7 +29,7 @@ async function logout(){
 </p>
 {/if}
 <p>
-This page © Lillith {date}
+This page © Etienne Olieu {date}
 </p>
 
 <style>

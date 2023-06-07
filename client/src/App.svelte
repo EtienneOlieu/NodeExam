@@ -13,6 +13,7 @@ import Login from "./pages/login/Login.svelte";
 import Account from "./pages/account/Account.svelte";
 import Signup from "./pages/signup/Signup.svelte";
 import Admin from "./pages/admin/Admin.svelte";
+import Familiars from "./pages/familiars/Familiars.svelte";
 
 $: if (!user){
   navigate("/", {
@@ -35,6 +36,7 @@ $: if (!user){
 {#if $user}
 <Link to="/account">Account</Link>
 <Link to="/coven">Coven</Link>
+<Link to="/familiars">Familiars</Link>
 <Link to="/formulae">Formulae</Link>
 {#if $user.privilege === "admin"}
 <Link to="/admin">ADMIN</Link>
@@ -63,6 +65,10 @@ $: if (!user){
 
 <PrivateRoute path="/coven">
   <Coven />
+</PrivateRoute>
+
+<PrivateRoute path="/familiars">
+  <Familiars />
 </PrivateRoute>
 
 <PrivateRoute path="/formulae">

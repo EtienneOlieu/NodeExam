@@ -10,3 +10,5 @@ router.get("api/session", async (req, res) => {
 });
 
 export default router;
+
+//MERE AF MIKKELS SESSION ROUTER.

@@ -37,7 +37,7 @@ async function login(){
     }
 
     if (response.status === 200 && data.email === email){
-        user.set({name: data.name, email: data.email, privilege: data.privilege})
+        user.set({name: data.name, email: data.email, privilege: data.privilege, id: data.id});
         
         toastr.success("You have logged in. Welcome back ", $user.name);
         setTimeout(()=>{
