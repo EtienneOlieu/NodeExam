@@ -35,7 +35,6 @@ $: if (!user){
 {#if $user}
 <Link to="/account">Account</Link>
 <Link to="/coven">Coven</Link>
-<Link to="/familiars">Familiars</Link>
 <Link to="/formulae">Formulae</Link>
 {#if $user.privilege === "admin"}
 <Link to="/admin">ADMIN</Link>

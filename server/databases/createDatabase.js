@@ -110,7 +110,6 @@ collectionFormulae.insertMany(sampleFormulae, (error, result) => {
 });
 
 const today = new Date().toLocaleString("en-GB");
-console.log(today)
 const dayZeroLog = {
     "date": today,
     "sender": "ADMIN",

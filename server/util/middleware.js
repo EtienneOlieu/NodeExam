@@ -1,5 +1,3 @@
-//RYK AUTH I EGEN FIL (done) husk at implementere i get metode.
-
 const user = (req, res, next) => {
     if(!req.session.user){
         return res.status(400).send({data: "user is not logged in"});
