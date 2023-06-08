@@ -3,7 +3,6 @@ import { Router } from "express";
 import { user, admin } from "../util/middleware.js"
 const router = Router();
 import bcrypt from "bcrypt";
-import { ObjectId } from "mongodb";
 
 const users = client.db("hexnetDB").collection("users");
 
